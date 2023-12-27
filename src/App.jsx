@@ -1,16 +1,16 @@
 import { FormProvider } from "./formContext";
+import FormContainer from "./components/FormContainer";
 import Header from "./components/Header";
 
 const App = () => {
   return (
-    <FormProvider>
-      <div className="min-h-screen w-full font-ubuntu">
-        {/* form container */}
-        <div>
+    <div className="min-h-screen w-full font-ubuntu">
+      <FormProvider>
+        <FormContainer>
           <Header />
-        </div>
-      </div>
-    </FormProvider>
+        </FormContainer>
+      </FormProvider>
+    </div>
   );
 };
 
