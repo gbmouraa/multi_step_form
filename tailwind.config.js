@@ -5,7 +5,11 @@ module.exports = {
     fontFamily: {
       ubuntu: ["Ubuntu", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "mobile-aside": "url('/src/assets/bg-sidebar-mobile.svg')",
+      },
+    },
   },
   plugins: [],
 };
