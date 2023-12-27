@@ -1,9 +1,17 @@
-function App() {
+import { FormProvider } from "./formContext";
+import Header from "./components/Header";
+
+const App = () => {
   return (
-    <div className="min-h-screen w-full font-ubuntu">
-      <h1>Hello world!</h1>
-    </div>
+    <FormProvider>
+      <div className="min-h-screen w-full font-ubuntu">
+        {/* form container */}
+        <div>
+          <Header />
+        </div>
+      </div>
+    </FormProvider>
   );
-}
+};
 
 export default App;
