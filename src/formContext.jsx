@@ -1,8 +1,10 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 const FormContext = createContext({});
 
 const FormProvider = ({ children }) => {
+  const [currentStep, setCurrentStep] = useState(1);
+
   const steps = [
     { step: "STEP 1", desc: "YOUR INFO" },
     { step: "STEP 2", desc: "SELECT PLAN" },
@@ -11,7 +13,9 @@ const FormProvider = ({ children }) => {
   ];
 
   return (
-    <FormContext.Provider value={{ steps }}>{children}</FormContext.Provider>
+    <FormContext.Provider value={{ steps, currentStep, setCurrentStep }}>
+      {children}
+    </FormContext.Provider>
   );
 };
 
