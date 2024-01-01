@@ -5,7 +5,7 @@ const Header = () => {
   const { steps, currentStep } = useContext(FormContext);
 
   return (
-    <header className="min-h-40 bg-mobile-aside bg-cover bg-no-repeat">
+    <header className="min-h-44 bg-mobile-aside bg-cover bg-no-repeat">
       <ul className="flex justify-center gap-x-4 pt-10">
         {steps.map((item, idx) => {
           return (
