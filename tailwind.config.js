@@ -9,6 +9,13 @@ module.exports = {
       backgroundImage: {
         "mobile-aside": "url('/src/assets/bg-sidebar-mobile.svg')",
       },
+      colors: {
+        "light-blue": "	#bfe2fd",
+        "marine-blue": "#02295a",
+        "pastel-blue": "#adbeff",
+        magnolia: "#f0f6ff",
+        alabaster: "#fafbff",
+      },
     },
   },
   plugins: [],
