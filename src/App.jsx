@@ -4,7 +4,7 @@ import Header from "./components/Header";
 
 const App = () => {
   return (
-    <div className="min-h-screen w-full font-ubuntu">
+    <div className="min-h-screen w-full items-center justify-center font-ubuntu md:flex md:bg-magnolia">
       <FormProvider>
         <FormContainer>
           <Header />

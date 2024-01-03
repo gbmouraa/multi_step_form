@@ -1,9 +1,8 @@
 import StepOne from "./steps/StepOne";
-import Navigation from "./Navigation";
 
 const FormContainer = ({ children }) => {
   return (
-    <div className="bg-magnolia relative h-screen w-full">
+    <div className="relative h-screen w-full  bg-magnolia  md:flex md:h-fit md:w-fit md:rounded-lg md:bg-white md:p-4">
       {/* Header */}
       {children}
 
