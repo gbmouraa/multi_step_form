@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         "mobile-aside": "url('/src/assets/bg-sidebar-mobile.svg')",
+        "desktop-aside": "url('/src/assets/bg-sidebar-desktop.svg')",
       },
       colors: {
         "light-blue": "	#bfe2fd",
@@ -15,6 +16,7 @@ module.exports = {
         "pastel-blue": "#adbeff",
         magnolia: "#f0f6ff",
         alabaster: "#fafbff",
+        "purple-blue": "	#473dff",
       },
     },
   },
