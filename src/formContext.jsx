@@ -13,7 +13,13 @@ const FormProvider = ({ children }) => {
   ];
 
   return (
-    <FormContext.Provider value={{ steps, currentStep, setCurrentStep }}>
+    <FormContext.Provider
+      value={{
+        steps,
+        currentStep,
+        setCurrentStep,
+      }}
+    >
       {children}
     </FormContext.Provider>
   );
