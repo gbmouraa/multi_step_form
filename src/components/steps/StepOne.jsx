@@ -14,6 +14,8 @@ const StepOne = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    // const { name, email, phoneNumber } = data;
+
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
@@ -36,15 +38,15 @@ const StepOne = () => {
             <input
               type="text"
               className={`${
-                errors.name
+                errors.currentName
                   ? "border-red-500 focus:border-red-500"
                   : "border-zinc-200"
               } rounded-lg border px-4  py-2 font-medium text-marine-blue outline-none focus:border-purple-blue`}
               placeholder="e.g. Stephen King"
-              {...register("name", { required: true })}
+              {...register("currentName", { required: true })}
             />
 
-            {errors?.name && (
+            {errors?.currentName && (
               <span className="absolute right-0 font-medium text-red-500">
                 This field is required
               </span>
@@ -56,23 +58,23 @@ const StepOne = () => {
             <input
               type="text"
               className={`${
-                errors.email
+                errors.currentEmail
                   ? "border-red-500 focus:border-red-500"
                   : "border-zinc-200"
               } rounded-lg border px-4 py-2 font-medium text-marine-blue outline-none focus:border-purple-blue`}
               placeholder="e.g. stephenking@lorem.com"
-              {...register("email", {
+              {...register("currentEmail", {
                 required: true,
                 validate: (value) => validator.isEmail(value),
               })}
             />
 
-            {errors?.email?.type === "required" && (
+            {errors?.currentEmail?.type === "required" && (
               <span className="absolute right-0 font-medium text-red-500">
                 This field is required
               </span>
             )}
-            {errors?.email?.type === "validate" && (
+            {errors?.currentEmail?.type === "validate" && (
               <span className="absolute right-0 font-medium text-red-500">
                 Invalid email
               </span>
@@ -84,15 +86,15 @@ const StepOne = () => {
             <input
               type="number"
               className={`${
-                errors.phoneNumber
+                errors.currentPhoneNumber
                   ? "border-red-500 focus:border-red-500"
                   : "border-zinc-200"
               } rounded-lg border px-4  py-2 font-medium text-marine-blue outline-none focus:border-purple-blue`}
               placeholder="e.g. +1 234 567 890"
-              {...register("phoneNumber", { required: true })}
+              {...register("currentPhoneNumber", { required: true })}
             />
 
-            {errors?.phoneNumber && (
+            {errors?.currentPhoneNumber && (
               <span className="absolute right-0 font-medium text-red-500">
                 This field is required
               </span>
