@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FormContext } from "../../formContext";
 import validator from "validator";
@@ -10,12 +10,44 @@ const StepOne = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      currentName: localStorage.getItem("currentName") || "",
+      currentEmail: localStorage.getItem("currentEmail") || "",
+      currentPhoneNumber: localStorage.getItem("currentPhoneNumber") || "",
+    },
+  });
+
+  const currentName = watch("currentName");
+  const currentEmail = watch("currentEmail");
+  const currentPhoneNumber = watch("currentPhoneNumber");
+
+  // salvar valores do do formulário
+  useEffect(() => {
+    localStorage.setItem("currentName", currentName);
+    localStorage.setItem("currentEmail", currentEmail);
+    localStorage.setItem("currentPhoneNumber", currentPhoneNumber);
+  }, [currentName, currentEmail, currentPhoneNumber]);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+
+      localStorage.removeItem("currentName");
+      localStorage.removeItem("currentEmail");
+      localStorage.removeItem("currentPhoneNumber");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   const onSubmit = (data) => {
-    // const { name, email, phoneNumber } = data;
-
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
