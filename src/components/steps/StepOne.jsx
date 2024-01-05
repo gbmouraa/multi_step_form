@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FormContext } from "../../formContext";
+import FormContent from "../FormContent";
 import validator from "validator";
 import Navigation from "../Navigation";
 
@@ -52,19 +53,11 @@ const StepOne = () => {
   };
 
   return (
-    <div className="flex-col justify-between md:flex md:px-20">
-      {/* Form */}
-      <div className="-translate-y-[72px] px-4 md:translate-y-0 md:px-0">
-        <div className="rounded-md bg-white px-6 py-7 shadow-sm md:rounded-none md:px-0 md:pb-0 md:pt-10 md:shadow-none">
-          <div>
-            <h1 className="mb-2 text-2xl font-bold text-marine-blue md:text-3xl">
-              Personal info
-            </h1>
-            <p className="mb-6 text-zinc-400">
-              Please provide your name, email address, and phone number.
-            </p>
-          </div>
-
+    <FormContent
+      title="Personal info"
+      description="Please provide your name, email address, and phone number."
+      content={
+        <>
           <div className="relative mb-4 flex flex-col">
             <label className="mb-1 text-marine-blue">Name</label>
             <input
@@ -132,11 +125,10 @@ const StepOne = () => {
               </span>
             )}
           </div>
-        </div>
-      </div>
-
-      <Navigation onSubmit={() => handleSubmit(onSubmit)()} />
-    </div>
+        </>
+      }
+      nav={<Navigation onSubmit={() => handleSubmit(onSubmit)()} />}
+    />
   );
 };
 
