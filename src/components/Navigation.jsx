@@ -5,7 +5,7 @@ const Navigation = (props) => {
   const { currentStep } = useContext(FormContext);
 
   return (
-    <nav className="absolute bottom-0 flex h-20 w-full items-center bg-white px-4 md:static md:px-0">
+    <nav className="fixed bottom-0 flex h-20 w-full items-center bg-white px-4 md:static md:px-0">
       {currentStep > 1 && (
         <button
           className="font-medium text-zinc-400 transition-all hover:text-marine-blue"
