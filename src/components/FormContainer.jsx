@@ -24,7 +24,10 @@ const FormContainer = ({ children }) => {
   };
 
   return (
-    <div className="relative h-screen w-full bg-magnolia md:flex md:h-fit md:w-fit md:rounded-xl md:bg-white md:p-4 md:shadow-md">
+    <div
+      className="min-h-screen bg-magnolia md:flex md:min-h-0 md:w-fit md:rounded-xl md:bg-white md:p-4 md:shadow-md"
+      id="form-container"
+    >
       {/* Header */}
       {children}
 
