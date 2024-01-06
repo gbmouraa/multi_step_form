@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      md: "919px",
+    },
+
     fontFamily: {
       ubuntu: ["Ubuntu", "sans-serif"],
     },
