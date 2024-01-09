@@ -4,7 +4,8 @@ const FormContext = createContext({});
 
 const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [planData, setPlanData] = useState({});
+  const [personalData, setPersonalData] = useState({});
 
   const steps = [
     { step: "STEP 1", desc: "YOUR INFO" },
@@ -19,8 +20,10 @@ const FormProvider = ({ children }) => {
         steps,
         currentStep,
         setCurrentStep,
-        formData,
-        setFormData,
+        planData,
+        setPlanData,
+        personalData,
+        setPersonalData,
       }}
     >
       {children}
