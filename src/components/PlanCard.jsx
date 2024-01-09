@@ -6,6 +6,9 @@ const PlanCard = (props) => {
         type="radio"
         name="plan"
         id={props.id}
+        checked={props.checked}
+        value={props.value}
+        onChange={props.onChange}
       />
       <label
         htmlFor={props.id}
