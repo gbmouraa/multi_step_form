@@ -6,7 +6,8 @@ import validator from "validator";
 import Navigation from "../Navigation";
 
 const StepOne = () => {
-  const { setCurrentStep, setStorageData } = useContext(FormContext);
+  const { setCurrentStep, setStorageData, formData, setFormData } =
+    useContext(FormContext);
 
   const {
     register,
@@ -23,8 +24,6 @@ const StepOne = () => {
 
   useEffect(() => {
     const getFormData = () => {
-      const formData = JSON.parse(localStorage.getItem("@formData"));
-
       if (formData === null) return;
 
       setValue("currentName", formData.currentName);
@@ -38,8 +37,7 @@ const StepOne = () => {
   useEffect(() => {
     const handleBeforeUnload = (e) => {
       e.preventDefault();
-
-      localStorage.removeItem("@formData");
+      setFormData({});
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -52,6 +50,7 @@ const StepOne = () => {
   const onSubmit = (data) => {
     setCurrentStep((prevStep) => prevStep + 1);
     setStorageData(data);
+    setFormData(data);
   };
 
   return (

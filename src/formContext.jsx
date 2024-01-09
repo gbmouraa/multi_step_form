@@ -4,6 +4,7 @@ const FormContext = createContext({});
 
 const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({});
 
   const steps = [
     { step: "STEP 1", desc: "YOUR INFO" },
@@ -12,17 +13,14 @@ const FormProvider = ({ children }) => {
     { step: "STEP 4", desc: "SUMMARY" },
   ];
 
-  const setStorageData = (data) => {
-    localStorage.setItem("@formData", JSON.stringify(data));
-  };
-
   return (
     <FormContext.Provider
       value={{
         steps,
         currentStep,
         setCurrentStep,
-        setStorageData,
+        formData,
+        setFormData,
       }}
     >
       {children}
