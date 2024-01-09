@@ -12,12 +12,17 @@ const FormProvider = ({ children }) => {
     { step: "STEP 4", desc: "SUMMARY" },
   ];
 
+  const setStorageData = (data) => {
+    localStorage.setItem("@formData", JSON.stringify(data));
+  };
+
   return (
     <FormContext.Provider
       value={{
         steps,
         currentStep,
         setCurrentStep,
+        setStorageData,
       }}
     >
       {children}

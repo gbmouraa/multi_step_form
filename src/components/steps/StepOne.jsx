@@ -6,12 +6,12 @@ import validator from "validator";
 import Navigation from "../Navigation";
 
 const StepOne = () => {
-  const { setCurrentStep } = useContext(FormContext);
+  const { setCurrentStep, setStorageData } = useContext(FormContext);
 
   const {
     register,
     handleSubmit,
-    watch,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -21,24 +21,25 @@ const StepOne = () => {
     },
   });
 
-  const currentName = watch("currentName");
-  const currentEmail = watch("currentEmail");
-  const currentPhoneNumber = watch("currentPhoneNumber");
-
-  // salvar valores do do formulário
   useEffect(() => {
-    localStorage.setItem("currentName", currentName);
-    localStorage.setItem("currentEmail", currentEmail);
-    localStorage.setItem("currentPhoneNumber", currentPhoneNumber);
-  }, [currentName, currentEmail, currentPhoneNumber]);
+    const getFormData = () => {
+      const formData = JSON.parse(localStorage.getItem("@formData"));
+
+      if (formData === null) return;
+
+      setValue("currentName", formData.currentName);
+      setValue("currentEmail", formData.currentEmail);
+      setValue("currentPhoneNumber", formData.currentPhoneNumber);
+    };
+
+    getFormData();
+  }, []);
 
   useEffect(() => {
     const handleBeforeUnload = (e) => {
       e.preventDefault();
 
-      localStorage.removeItem("currentName");
-      localStorage.removeItem("currentEmail");
-      localStorage.removeItem("currentPhoneNumber");
+      localStorage.removeItem("@formData");
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -50,6 +51,7 @@ const StepOne = () => {
 
   const onSubmit = (data) => {
     setCurrentStep((prevStep) => prevStep + 1);
+    setStorageData(data);
   };
 
   return (
