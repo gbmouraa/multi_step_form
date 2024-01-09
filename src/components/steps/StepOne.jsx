@@ -6,7 +6,7 @@ import validator from "validator";
 import Navigation from "../Navigation";
 
 const StepOne = () => {
-  const { setCurrentStep, setStorageData, formData, setFormData } =
+  const { setCurrentStep, personalData, setPersonalData } =
     useContext(FormContext);
 
   const {
@@ -14,43 +14,30 @@ const StepOne = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      currentName: localStorage.getItem("currentName") || "",
-      currentEmail: localStorage.getItem("currentEmail") || "",
-      currentPhoneNumber: localStorage.getItem("currentPhoneNumber") || "",
-    },
-  });
+  } = useForm();
 
   useEffect(() => {
-    const getFormData = () => {
-      if (formData === null) return;
+    const getPersonalData = () => {
+      if (personalData === null) return;
 
-      setValue("currentName", formData.currentName);
-      setValue("currentEmail", formData.currentEmail);
-      setValue("currentPhoneNumber", formData.currentPhoneNumber);
+      setValue("currentName", personalData.name);
+      setValue("currentEmail", personalData.email);
+      setValue("currentPhoneNumber", personalData.phoneNumber);
     };
 
-    getFormData();
-  }, []);
-
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      e.preventDefault();
-      setFormData({});
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
+    getPersonalData();
   }, []);
 
   const onSubmit = (data) => {
+    const { currentName, currentEmail, currentPhoneNumber } = data;
+    let newData = {
+      name: currentName,
+      email: currentEmail,
+      phoneNumber: currentPhoneNumber,
+    };
+
+    setPersonalData(newData);
     setCurrentStep((prevStep) => prevStep + 1);
-    setStorageData(data);
-    setFormData(data);
   };
 
   return (
