@@ -4,7 +4,6 @@ const AddOns = (props) => {
       <input
         className="peer absolute left-4 top-2/4 block h-4 w-4  -translate-y-2/4  accent-purple-blue"
         type="checkbox"
-        value={props.value}
         id={props.id}
         checked={props.checked}
         onChange={props.onChange}
