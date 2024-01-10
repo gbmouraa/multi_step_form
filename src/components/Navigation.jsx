@@ -15,12 +15,21 @@ const Navigation = (props) => {
         </button>
       )}
 
-      <button
-        className="ml-auto rounded-lg bg-marine-blue px-4 py-3 font-medium text-white transition-all hover:opacity-70"
-        onClick={props.onSubmit}
-      >
-        Next Step
-      </button>
+      {currentStep < 4 ? (
+        <button
+          className="ml-auto rounded-lg bg-marine-blue px-4 py-3 font-medium text-white transition-all hover:opacity-70"
+          onClick={props.onSubmit}
+        >
+          Next Step
+        </button>
+      ) : (
+        <button
+          className="ml-auto rounded-lg bg-purple-blue px-4 py-3 font-medium text-white transition-all hover:opacity-70"
+          onClick={props.confirm}
+        >
+          Confirm
+        </button>
+      )}
     </nav>
   );
 };
