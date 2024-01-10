@@ -4,8 +4,15 @@ const FormContext = createContext({});
 
 const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [planData, setPlanData] = useState({});
+
   const [personalData, setPersonalData] = useState({});
+
+  const [plan, setPlan] = useState("arcade");
+  const [isYearly, setIsYearly] = useState(false);
+
+  const [onlineService, setOnlineService] = useState(false);
+  const [largerStorage, setLargerStorage] = useState(false);
+  const [customizableProfile, setCustomizableProfile] = useState(false);
 
   const steps = [
     { step: "STEP 1", desc: "YOUR INFO" },
@@ -20,10 +27,18 @@ const FormProvider = ({ children }) => {
         steps,
         currentStep,
         setCurrentStep,
-        planData,
-        setPlanData,
         personalData,
         setPersonalData,
+        plan,
+        setPlan,
+        isYearly,
+        setIsYearly,
+        onlineService,
+        setOnlineService,
+        largerStorage,
+        setLargerStorage,
+        customizableProfile,
+        setCustomizableProfile,
       }}
     >
       {children}
