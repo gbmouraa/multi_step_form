@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import ToggleButton from "../ToggleButton";
 import Navigation from "../Navigation";
 import FormContent from "../FormContent";
@@ -10,53 +10,23 @@ import advancedIcon from "../../assets/icon-advanced.svg";
 import proIcon from "../../assets/icon-pro.svg";
 
 const StepTwo = () => {
-  const { setCurrentStep, planData, setPlanData } = useContext(FormContext);
-
-  const [planSelected, setPlanSelected] = useState("arcade");
-  const [isYearly, setIsYearly] = useState(false);
-
-  useEffect(() => {
-    const getPlanData = () => {
-      const { plan, yearly } = planData;
-
-      if (plan !== undefined && yearly !== undefined) {
-        setIsYearly(yearly);
-        setPlanSelected(plan);
-      }
-    };
-
-    getPlanData();
-  }, []);
+  const { setCurrentStep, plan, setPlan, isYearly, setIsYearly } =
+    useContext(FormContext);
 
   const onSubmit = () => {
     setCurrentStep((prevStep) => prevStep + 1);
-    let data = {
-      ...planData,
-      plan: planSelected,
-      yearly: isYearly,
-    };
-
-    setPlanData(data);
   };
 
   const goBack = () => {
-    let data = {
-      ...planData,
-      plan: planSelected,
-      yearly: isYearly,
-    };
-
-    setPlanData(data);
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
   const handlePlanSelected = (e) => {
-    setPlanSelected(e.target.value);
+    setPlan(e.target.value);
   };
 
   const handleIsYearly = () => {
     setIsYearly(!isYearly);
-    setPlanData({ ...planData, yearly: isYearly });
   };
 
   return (
@@ -77,7 +47,7 @@ const StepTwo = () => {
                 yr="$90/yr"
                 yearly={isYearly}
                 onChange={handlePlanSelected}
-                checked={planSelected === "arcade"}
+                checked={plan === "arcade"}
               />
 
               <PlanCard
@@ -89,7 +59,7 @@ const StepTwo = () => {
                 yr="$120/yr"
                 yearly={isYearly}
                 onChange={handlePlanSelected}
-                checked={planSelected === "advanced"}
+                checked={plan === "advanced"}
               />
 
               <PlanCard
@@ -101,7 +71,7 @@ const StepTwo = () => {
                 yr="$150/yr"
                 yearly={isYearly}
                 onChange={handlePlanSelected}
-                checked={planSelected === "pro"}
+                checked={plan === "pro"}
               />
             </div>
 
