@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { FormContext } from "../formContext";
 import StepOne from "./steps/StepOne";
 import StepTwo from "./steps/StepTwo";
@@ -7,6 +7,7 @@ import StepFour from "./steps/StepFour";
 
 const FormContainer = ({ children }) => {
   const { currentStep } = useContext(FormContext);
+  const [isVisible, setIsVisible] = useState(false);
 
   const renderStep = () => {
     switch (currentStep) {
@@ -23,9 +24,15 @@ const FormContainer = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <div
-      className="min-h-screen bg-magnolia md:flex md:min-h-0 md:w-fit md:rounded-xl md:bg-white md:p-4 md:shadow-md"
+      className={`min-h-screen bg-magnolia transition-opacity duration-700 ease-in md:flex md:min-h-0 md:w-fit md:rounded-xl md:bg-white md:p-4 md:shadow-md ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
       id="form-container"
     >
       {/* Header */}

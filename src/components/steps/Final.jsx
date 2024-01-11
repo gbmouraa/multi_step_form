@@ -1,11 +1,22 @@
+import { useEffect, useState } from "react";
 import FormContent from "../FormContent";
 import iconThankYou from "../../assets/icon-thank-you.svg";
 
 const Final = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <FormContent
       content={
-        <div className="mt-[20%] pb-12 md:pb-0">
+        <div
+          className={`mt-[20%] pb-12 transition-opacity duration-700 ease-in md:pb-0 ${
+            isVisible ? "opacity-100" : "opacity-0"
+          }`}
+        >
           <div className="text-center">
             <img
               src={iconThankYou}
