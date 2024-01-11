@@ -12,7 +12,7 @@ const PlanCard = (props) => {
       />
       <label
         htmlFor={props.id}
-        className="peer-label flex cursor-pointer items-center gap-x-3 rounded-lg border border-zinc-200 p-4 hover:bg-alabaster md:flex-col md:items-start"
+        className="peer-label flex cursor-pointer items-center gap-x-3 rounded-lg border border-zinc-200 p-4 hover:border-purple-blue md:flex-col md:items-start"
       >
         <img src={props.icon} alt="illustration" className="md:mb-10" />
         <div className="flex flex-col">
