@@ -1,7 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext } from "../../formContext";
 import FormContent from "../FormContent";
 import Navigation from "../Navigation";
+
+import Final from "./Final";
 
 const StepFour = () => {
   const {
@@ -12,6 +14,8 @@ const StepFour = () => {
     largerStorage,
     customizableProfile,
   } = useContext(FormContext);
+
+  const [isFinished, setIsFinished] = useState(false);
 
   let totalPrice;
   let price;
@@ -55,7 +59,9 @@ const StepFour = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
-  return (
+  return isFinished ? (
+    <Final />
+  ) : (
     <FormContent
       title="Finishing up"
       description="Double-check everything looks OK before confirming."
@@ -69,7 +75,7 @@ const StepFour = () => {
                 </span>
                 <button
                   onClick={() => setCurrentStep(2)}
-                  className="w-fit text-sm text-zinc-400 underline"
+                  className="w-fit text-sm text-zinc-400 underline transition-all hover:text-purple-blue"
                 >
                   Change
                 </button>
@@ -94,7 +100,7 @@ const StepFour = () => {
           {/* total price */}
           <div className="mt-5 flex justify-between px-3">
             <span className="text-zinc-400">
-              Total (per {isYearly ? "yearly" : "month"})
+              Total (per {isYearly ? "year" : "month"})
             </span>
             <span className="font-bold text-purple-blue">{`+$${totalPrice}/${
               isYearly ? "yr" : "mo"
@@ -102,7 +108,7 @@ const StepFour = () => {
           </div>
         </>
       }
-      nav={<Navigation goBack={goBack} confirm={() => setCurrentStep(5)} />}
+      nav={<Navigation goBack={goBack} confirm={() => setIsFinished(true)} />}
     />
   );
 };
